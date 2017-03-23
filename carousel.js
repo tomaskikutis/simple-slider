@@ -1,19 +1,19 @@
-function Carousel(options){
+function Carousel(options) {
 
-	function slide(){
-		innerWrapperEl.style.transform = "translateX(" + ( -currentSlide  * slideWidth ) + "px)";
+	function slide() {
+		innerWrapperEl.style.transform = "translateX(" + (-currentSlide * slideWidth) + "px)";
 	}
 
-	function tryToSlide(direction){
+	function tryToSlide(direction) {
 
 		var currentSlideCache = currentSlide;
 
 		currentSlide = currentSlide + (slidesInGroupCount * direction);
 
-		if(currentSlide <= minSlide){
+		if (currentSlide <= minSlide) {
 			currentSlide = minSlide;
 		}
-		else if(currentSlide >= maxSlide){
+		else if (currentSlide >= maxSlide) {
 			currentSlide = maxSlide - slidesInGroupCount;
 		}
 
@@ -23,8 +23,8 @@ function Carousel(options){
 		nextButton.disabled = !canGoNext;
 		prevButton.disabled = !canGoPrev;
 
-		if(currentSlide !== currentSlideCache){
-			if(typeof beforeSlideFunc === "function"){
+		if (currentSlide !== currentSlideCache) {
+			if (typeof beforeSlideFunc === "function") {
 				beforeSlideFunc(Array.from(innerWrapperEl.children).slice(currentSlide, currentSlide + slidesInGroupCount), slide);
 			}
 			else {
@@ -34,10 +34,10 @@ function Carousel(options){
 
 	}
 
-	function next(){
+	function next() {
 		tryToSlide(1);
 	}
-	function prev(){
+	function prev() {
 		tryToSlide(-1);
 	}
 
@@ -48,7 +48,7 @@ function Carousel(options){
 	var innerWrapperEl = carouselEl.querySelector(".carousel--inner-wrapper");
 	var slideWidth = carouselEl.offsetWidth / 4;
 
-	data.forEach(function(url){
+	data.forEach(function (url) {
 		var image = document.createElement("img");
 		image.src = url;
 		image.style.width = slideWidth + "px";
@@ -57,7 +57,7 @@ function Carousel(options){
 
 	var nextButton = carouselEl.querySelector(".carousel--controls--next");
 	var prevButton = carouselEl.querySelector(".carousel--controls--prev");
-	
+
 	var minSlide = 0;
 	var maxSlide = innerWrapperEl.children.length;
 	var currentSlide = minSlide;
