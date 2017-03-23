@@ -38,6 +38,33 @@ var carousel = document.querySelector(".carousel");
 
 function Carousel(carouselEl, data){
 
+	function slide(direction){
+
+		currentSlide = currentSlide + (slidesInGroupCount * direction);
+
+		if(currentSlide <= minSlide){
+			currentSlide = minSlide;
+		}
+		else if(currentSlide >= maxSlide){
+			currentSlide = maxSlide - slidesInGroupCount;
+		}
+
+		innerWrapperEl.style.transform = "translateX(" + ( -currentSlide  * slideWidth ) + "px)";
+
+		var canGoNext = currentSlide + slidesInGroupCount < maxSlide;
+		var canGoPrev = currentSlide > minSlide;
+
+		nextButton.disabled = !canGoNext;
+		prevButton.disabled = !canGoPrev;
+	}
+
+	function next(){
+		slide(1);
+	}
+	function prev(){
+		slide(-1);
+	}
+
 	var innerWrapperEl = carouselEl.querySelector(".carousel--inner-wrapper");
 	var slideWidth = carousel.offsetWidth / 4;
 
@@ -56,36 +83,10 @@ function Carousel(carouselEl, data){
 	var currentSlide = minSlide;
 	var slidesInGroupCount = 4;
 
-	var goToSlide = function goToSlide(direction){
+	slide(-1);
 
-		currentSlide = currentSlide + (slidesInGroupCount * direction);
-
-		if(currentSlide <= minSlide){
-			currentSlide = minSlide;
-		}
-		else if(currentSlide >= maxSlide){
-			currentSlide = maxSlide - slidesInGroupCount;
-		}
-
-		innerWrapperEl.style.transform = "translateX(" + ( -currentSlide  * slideWidth ) + "px)";
-
-		var canGoNext = currentSlide + slidesInGroupCount < maxSlide;
-		var canGoPrev = currentSlide > minSlide;
-
-		nextButton.disabled = !canGoNext;
-		prevButton.disabled = !canGoPrev;
-
-	}
-
-	this.next = function next(){
-		goToSlide(1);
-	}
-	this.prev = function prev(){
-		goToSlide(-1);
-	}
-
-	nextButton.addEventListener("click", this.next);
-	prevButton.addEventListener("click", this.prev);
+	nextButton.addEventListener("click", next);
+	prevButton.addEventListener("click", prev);
 }
 
 var carouselInstance = new Carousel(carousel, slides);
