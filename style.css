@@ -14,7 +14,7 @@
 
 .carousel--inner-wrapper {
 	width: 9999em;
-	transition: 300ms linear;
+	transition: 200ms linear;
 }
 
 .carousel--inner-wrapper > * {
