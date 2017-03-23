@@ -1,0 +1,53 @@
+/* PAGE SETUP */
+
+.container {
+	width: 800px;
+	margin: 0 auto;
+}
+
+/* CAROUSEL BASE */
+
+.carousel {
+	position: relative;
+	overflow: hidden;
+}
+
+.carousel--inner-wrapper {
+	width: 9999em;
+	transition: 200ms linear;
+}
+
+.carousel--inner-wrapper > * {
+	float: left;
+}
+
+/* CONTROLS */
+
+.carousel--controls {
+	text-align: center;
+	margin-top: 10px;
+}
+.carousel--controls--next,
+.carousel--controls--prev {
+	font-size: 1.4em;
+	z-index: 1;
+}
+
+.carousel--controls--next {
+	right: 20px;
+}
+
+.carousel--controls--prev {
+	left: 20px;
+}
+
+/* CLEARFIX */
+
+.carousel--inner-wrapper:before,
+.carousel--inner-wrapper:after {
+  content: "";
+  display: table;
+} 
+.carousel--inner-wrapper:after {
+  clear: both;
+}
